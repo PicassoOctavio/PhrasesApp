@@ -1,5 +1,7 @@
+import { useDispatch } from "react-redux";
 import { Box, IconButton, Typography } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { deletePhrase } from "../../store/phrasesSlice";
 
 import "./Card.css";
 
@@ -9,8 +11,10 @@ interface CardProps {
 }
 
 export const Card = ({ id, description }: CardProps) => {
+  const dispatch = useDispatch();
+
   const handleDelete = () => {
-    console.log({ id });
+    dispatch(deletePhrase(id));
   };
 
   return (
