@@ -1,0 +1,17 @@
+.create-link {
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.create-link:hover {
+  color: black;
+  background-color: rgb(242, 242, 242);
+  padding: 10px;
+}
+
+.searchbar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
