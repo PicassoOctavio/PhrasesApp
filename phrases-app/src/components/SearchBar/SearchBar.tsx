@@ -45,7 +45,7 @@ export const SearchBar = () => {
         }}
       />
 
-      <Link href="/add" className="create-link">
+      <Link href="/crear" className="create-link">
         <Typography>Crear una frase</Typography>
       </Link>
     </Container>
