@@ -5,14 +5,21 @@ import {
   Typography,
   Paper,
   Box,
+  Link,
 } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
 import { useForm } from "../hooks/useForm";
 import { useState } from "react";
 import { validatePhrase } from "../helpers/validator";
+import { useDispatch } from "react-redux";
+import { addNewPhrase } from "../store/phrasesSlice";
+import { useNavigate } from "react-router";
 
 export const AddPhrasePage = () => {
   const { phrase, onInputChange } = useForm({ phrase: "" });
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -24,6 +31,14 @@ export const AddPhrasePage = () => {
 
     setError(false);
     console.log(phrase);
+
+    dispatch(
+      addNewPhrase({
+        id: new Date().getTime(),
+        description: phrase,
+      })
+    );
+    navigate("/");
   };
 
   return (
@@ -33,11 +48,29 @@ export const AddPhrasePage = () => {
         flexDirection: "column",
         width: 900,
         height: 700,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         minHeight: "100vh",
       }}
     >
+      <Link
+        href="/"
+        sx={{
+          textDecoration: "none",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          paddingLeft: 1,
+          paddingRight: 4,
+          borderRadius: 5,
+          "&:hover": {
+            backgroundColor: "#e7e7e7",
+          },
+        }}
+      >
+        <ArrowBack />
+        <Typography variant="h5">Volver</Typography>
+      </Link>
       <Paper
         elevation={3}
         sx={{
