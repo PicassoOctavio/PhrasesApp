@@ -10,17 +10,19 @@ import { Search } from "@mui/icons-material";
 import { useForm } from "../../hooks/useForm";
 
 import "./SearchBar.css";
+import { useDispatch } from "react-redux";
+import { getFilteredPhrases } from "../../store/phrasesSlice";
 
 const formField = {
   search: "",
 };
 export const SearchBar = () => {
   const { search, onInputChange } = useForm(formField);
+  const dispatch = useDispatch();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     onInputChange(event);
-
-    //searchCards()
+    dispatch(getFilteredPhrases(search));
   };
 
   return (
