@@ -6,7 +6,7 @@ export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<PhrasesPage />} />
-      <Route path="/add" element={<AddPhrasePage />} />
+      <Route path="/crear" element={<AddPhrasePage />} />
 
       <Route path="/*" element={<PhrasesPage />} />
     </Routes>

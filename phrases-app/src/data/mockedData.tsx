@@ -1,32 +1,30 @@
 export const mockedData = [
   {
-    id: Math.random(),
+    id: new Date().getTime() - 1,
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed hic sit blanditiis earum, rerum maiores? In ad, consequuntur est voluptatem aspernatur vel totam voluptatum autem asperiores rerum reiciendis nihil expedita?",
+      "Lo que imaginas con emoción, tu mente lo transforma en realidad.",
   },
   {
-    id: Math.random(),
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed hic sit blanditiis earum, rerum maiores? In ad, consequuntur est voluptatem aspernatur vel totam voluptatum autem asperiores rerum reiciendis nihil expedita?",
+    id: new Date().getTime() - 2,
+    description: "Tu energía crea el camino; cuida lo que piensas y sientes.",
   },
   {
-    id: Math.random(),
+    id: new Date().getTime() - 3,
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed hic sit blanditiis earum, rerum maiores? In ad, consequuntur est voluptatem aspernatur vel totam voluptatum autem asperiores rerum reiciendis nihil expedita?",
+      "Cada pensamiento es una semilla: siembra lo que quieres cosechar.",
   },
   {
-    id: Math.random(),
+    id: new Date().getTime() - 4,
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed hic sit blanditiis earum, rerum maiores? In ad, consequuntur est voluptatem aspernatur vel totam voluptatum autem asperiores rerum reiciendis nihil expedita?",
+      "Vibra en gratitud y la vida responderá en la misma frecuencia.",
   },
   {
-    id: Math.random(),
+    id: new Date().getTime() - 5,
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed hic sit blanditiis earum, rerum maiores? In ad, consequuntur est voluptatem aspernatur vel totam voluptatum autem asperiores rerum reiciendis nihil expedita?",
+      "El presente es tu lienzo, y tu mente, el pincel que lo pinta.",
   },
   {
-    id: Math.random(),
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed hic sit blanditiis earum, rerum maiores? In ad, consequuntur est voluptatem aspernatur vel totam voluptatum autem asperiores rerum reiciendis nihil expedita?",
+    id: new Date().getTime() - 6,
+    description: "Cambia tu historia interior y cambiará el mundo exterior.",
   },
 ];

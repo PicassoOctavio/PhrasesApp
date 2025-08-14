@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-export const useForm = (initialState = {}) => {
+export const useForm = <T extends object>(initialState: T) => {
   const [formState, setFormState] = useState(initialState);
 
-  const onInputChange = ({ target }) => {
+  const onInputChange = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = target;
     setFormState({
       ...formState,
@@ -12,6 +14,7 @@ export const useForm = (initialState = {}) => {
   };
 
   return {
+    ...formState,
     formState,
     onInputChange,
   };
