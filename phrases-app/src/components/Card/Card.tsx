@@ -1,16 +1,22 @@
 import { useDispatch } from "react-redux";
-import { Box, IconButton, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { deletePhrase } from "../../store/phrasesSlice";
 
 import "./Card.css";
 
 interface CardProps {
-  id: number;
+  id: string;
   description: string;
 }
 
 export const Card = ({ id, description }: CardProps) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [60, -60]);
+  const rotateY = useTransform(x, [-100, 100], [-60, 60]);
+
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -18,27 +24,40 @@ export const Card = ({ id, description }: CardProps) => {
   };
 
   return (
-    <Box className="card">
+    <motion.div
+      className="card"
+      style={{
+        x,
+        y,
+        rotateX,
+        rotateY,
+      }}
+      drag
+      dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
+      dragElastic={0.6}
+      whileTap={{ cursor: "grabbing" }}
+      whileHover={{
+        scale: 1.05,
+        boxShadow: "0px 15px 30px rgba(0,0,0,0.3)",
+        zIndex: 2,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
       <IconButton
         sx={{
           position: "absolute",
           top: 8,
           right: 8,
           color: "black",
-          width: 2,
-          height: 2,
-          "&:hover": {
-            bgcolor: "white",
-            width: 2,
-            height: 2,
-            borderRadius: 100,
-          },
+          width: 24,
+          height: 24,
+          "&:hover": { bgcolor: "white", borderRadius: "50%" },
         }}
         onClick={handleDelete}
       >
         <Close />
       </IconButton>
       <Typography variant="h6">{description}</Typography>
-    </Box>
+    </motion.div>
   );
 };
