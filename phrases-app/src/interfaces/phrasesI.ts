@@ -1,4 +1,4 @@
 export interface PhraseI {
-  id: number;
+  id: string;
   description: string;
 }
