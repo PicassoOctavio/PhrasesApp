@@ -5,13 +5,34 @@ import type { PhraseI } from "../../interfaces/phrasesI";
 
 import "./CardsGrid.css";
 
-export const CardsGrid = () => {
+interface CardsGridProps {
+  searchText?: string;
+}
+
+export const CardsGrid = ({ searchText = "" }: CardsGridProps) => {
   const { phrases } = useSelector((state) => state.phrases);
+
+  const filteredPhrases = phrases.filter((phrase: PhraseI) =>
+    phrase.description.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <Box className="cards-grid">
-      {phrases.map((phrase: PhraseI) => (
-        <Card key={phrase.id} id={phrase.id} description={phrase.description} />
-      ))}
+      {searchText
+        ? filteredPhrases.map((phrase: PhraseI) => (
+            <Card
+              key={phrase.id}
+              id={phrase.id}
+              description={phrase.description}
+            />
+          ))
+        : phrases.map((phrase: PhraseI) => (
+            <Card
+              key={phrase.id}
+              id={phrase.id}
+              description={phrase.description}
+            />
+          ))}
     </Box>
   );
 };

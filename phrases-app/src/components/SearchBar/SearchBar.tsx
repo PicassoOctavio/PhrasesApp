@@ -3,7 +3,6 @@ import {
   Container,
   TextField,
   Typography,
-  Link,
   InputAdornment,
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
@@ -11,18 +10,23 @@ import { useForm } from "../../hooks/useForm";
 
 import "./SearchBar.css";
 import { useDispatch } from "react-redux";
-import { getFilteredPhrases } from "../../store/phrasesSlice";
+import { Link } from "react-router";
 
 const formField = {
   search: "",
 };
-export const SearchBar = () => {
+
+interface SearchBarProps {
+  setSearchTerm: (value: string) => void;
+}
+
+export const SearchBar = ({ setSearchTerm }: SearchBarProps) => {
   const { search, onInputChange } = useForm(formField);
-  const dispatch = useDispatch();
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.trim();
     onInputChange(event);
-    dispatch(getFilteredPhrases(search));
+    setSearchTerm(value);
   };
 
   return (
@@ -47,7 +51,7 @@ export const SearchBar = () => {
         }}
       />
 
-      <Link href="/crear" className="create-link">
+      <Link to="/crear" className="create-link">
         <Typography>Crear una frase</Typography>
       </Link>
     </Container>

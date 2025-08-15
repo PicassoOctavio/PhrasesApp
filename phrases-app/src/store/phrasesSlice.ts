@@ -4,7 +4,6 @@ import { mockedData } from "../data/mockedData";
 export const phrasesSlice = createSlice({
   name: "phrases",
   initialState: {
-    allPhrases: mockedData,
     phrases: mockedData,
     isLoading: true,
   },
@@ -15,20 +14,7 @@ export const phrasesSlice = createSlice({
     deletePhrase: (state, { payload }) => {
       state.phrases = state.phrases.filter((phrase) => phrase.id !== payload);
     },
-    getFilteredPhrases: (state, { payload }) => {
-      const searchTerm = payload.trim().toLowerCase();
-
-      if (searchTerm === "") {
-        // si no hay búsqueda, mostrar todo
-        state.phrases = state.allPhrases;
-      } else {
-        state.phrases = state.allPhrases.filter((p) =>
-          p.description.toLowerCase().includes(searchTerm)
-        );
-      }
-    },
   },
 });
 
-export const { addNewPhrase, deletePhrase, getFilteredPhrases } =
-  phrasesSlice.actions;
+export const { addNewPhrase, deletePhrase } = phrasesSlice.actions;
