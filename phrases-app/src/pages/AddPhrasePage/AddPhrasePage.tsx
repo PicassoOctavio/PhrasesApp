@@ -5,15 +5,14 @@ import {
   Typography,
   Paper,
   Box,
-  Link,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import { useForm } from "../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 import { useState } from "react";
-import { validatePhrase } from "../helpers/validator";
+import { validatePhrase } from "../../helpers/validator";
 import { useDispatch } from "react-redux";
-import { addNewPhrase } from "../store/phrasesSlice";
-import { useNavigate } from "react-router";
+import { addNewPhrase } from "../../store/phrasesSlice";
+import { Link, useNavigate } from "react-router";
 
 export const AddPhrasePage = () => {
   const { phrase, onInputChange } = useForm({ phrase: "" });
@@ -30,11 +29,10 @@ export const AddPhrasePage = () => {
     }
 
     setError(false);
-    console.log(phrase);
 
     dispatch(
       addNewPhrase({
-        id: new Date().getTime(),
+        id: crypto.randomUUID(),
         description: phrase,
       })
     );
@@ -54,8 +52,8 @@ export const AddPhrasePage = () => {
       }}
     >
       <Link
-        href="/"
-        sx={{
+        to="/"
+        style={{
           textDecoration: "none",
           display: "flex",
           flexDirection: "row",
