@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import { PhrasesPage } from "../pages/PhrasesPage";
-import { AddPhrasePage } from "../pages/AddPhrasePage/AddPhrasePage";
+import { AddPhrasePage } from "../pages/AddPhrasePage";
 
 export const AppRouter = () => {
   return (
