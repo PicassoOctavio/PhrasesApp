@@ -1,17 +1,23 @@
 .create-link {
-  text-decoration: none;
-  padding: 10px;
+  padding: 0.5rem 2rem;
   border-radius: 10px;
+  margin-top: 2rem;
+  background-color: rgb(215 252 255);
+  display: flex;
 }
 
 .create-link:hover {
   color: black;
-  background-color: rgb(242, 242, 242);
-  padding: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+.link-button {
+  text-decoration: none;
 }
 
 .searchbar-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 }
