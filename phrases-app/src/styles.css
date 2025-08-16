@@ -1,5 +1,18 @@
 * {
-  margin: 1rem;
+  margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
+}
+body {
+  height: 100vh;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+.app-contianer {
+  height: 100vh;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
