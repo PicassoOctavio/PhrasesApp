@@ -6,7 +6,7 @@ export const mockedData = [
   },
   {
     id: crypto.randomUUID(),
-    description: "Tu energía crea el camino; cuida lo que piensas y sientes.",
+    description: "Tu energía crea el camino. Cuida lo que piensas y sientes.",
   },
   {
     id: crypto.randomUUID(),
