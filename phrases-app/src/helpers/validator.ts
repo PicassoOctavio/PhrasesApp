@@ -1,1 +1,8 @@
-export const validatePhrase = (text: string) => text.length <= 150;
+export const validatePhrase = (text: string) => {
+  const auxText = text.trim();
+  if (auxText) {
+    return text.trim().length <= 150;
+  } else {
+    return false;
+  }
+};
