@@ -9,7 +9,7 @@ export const phrasesSlice = createSlice({
   },
   reducers: {
     addNewPhrase: (state, { payload }) => {
-      state.phrases.push(payload);
+      state.phrases.unshift(payload);
     },
     deletePhrase: (state, { payload }) => {
       state.phrases = state.phrases.filter((phrase) => phrase.id !== payload);
