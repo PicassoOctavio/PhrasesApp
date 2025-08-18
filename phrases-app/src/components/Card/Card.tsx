@@ -52,13 +52,23 @@ export const Card = ({ id, description }: CardProps) => {
           top: 8,
           right: 8,
           color: "black",
-          width: 18,
-          height: 18,
-          "&:hover": { bgcolor: "white", borderRadius: "50%" },
+          width: 10,
+          height: 10,
         }}
         onClick={handleDelete}
       >
-        <Close />
+        <Close
+          sx={{
+            width: 18,
+            height: 18,
+            "&:hover": {
+              bgcolor: theme.palette.primary.light,
+              color: theme.palette.text.secondary,
+              borderRadius: "50%",
+              padding: "5px",
+            },
+          }}
+        />
       </IconButton>
       <Typography variant="h6">{description}</Typography>
     </motion.div>
