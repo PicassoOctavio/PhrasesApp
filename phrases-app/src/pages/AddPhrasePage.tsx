@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { motion } from "framer-motion";
 import {
   Button,
   Container,
@@ -8,12 +12,9 @@ import {
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { useForm } from "../hooks/useForm";
-import { useState } from "react";
 import { validatePhrase } from "../helpers/validator";
-import { useDispatch } from "react-redux";
 import { addNewPhrase } from "../store/phrasesSlice";
-import { Link, useNavigate } from "react-router";
-import { motion } from "framer-motion";
+import theme from "../theme/appTheme";
 
 export const AddPhrasePage = () => {
   const { phrase, onInputChange } = useForm({ phrase: "" });
@@ -50,6 +51,7 @@ export const AddPhrasePage = () => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         minHeight: "100vh",
+        marginTop: 10,
       }}
     >
       <motion.div
@@ -73,8 +75,12 @@ export const AddPhrasePage = () => {
             borderRadius: 5,
           }}
         >
-          <ArrowBack />
-          <Typography variant="h5">Volver</Typography>
+          <ArrowBack
+            sx={{ color: theme.palette.text.secondary, marginRight: 1 }}
+          />
+          <Typography variant="h5" color="text.secondary">
+            Volver
+          </Typography>
         </Link>
       </motion.div>
 
@@ -105,12 +111,16 @@ export const AddPhrasePage = () => {
             rows={5}
             error={error}
             helperText={
-              error ? "La frase no puede superar los 200 caracteres" : ""
+              error
+                ? "La frase no puede superar los 200 caracteres y no puede estar vacía"
+                : ""
             }
           />
-          <Button type="submit" variant="contained" size="large">
-            Crear
-          </Button>
+          <motion.div whileHover={{ scale: 1.11 }} whileTap={{ scale: 0.8 }}>
+            <Button type="submit" variant="contained" size="large" fullWidth>
+              Crear
+            </Button>
+          </motion.div>
         </Box>
       </Paper>
     </Container>
