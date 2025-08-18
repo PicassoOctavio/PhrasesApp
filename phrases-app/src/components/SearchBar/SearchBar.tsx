@@ -44,11 +44,9 @@ export const SearchBar = ({ setSearchTerm }: SearchBarProps) => {
         fullWidth
         sx={{
           "& .MuiOutlinedInput-input": {
-            backgroundColor: "white", // mantiene fondo blanco
+            backgroundColor: "white",
           },
           color: theme.palette.text.primary,
-          fontWeight: "bold",
-          fontSize: "16px",
         }}
         slotProps={{
           input: {
