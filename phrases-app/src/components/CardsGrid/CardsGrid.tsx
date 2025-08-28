@@ -1,11 +1,11 @@
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import { Card } from "../Card/Card";
+import { escapeRegExp } from "../../helpers/validator";
 import type { PhraseI } from "../../interfaces/phrasesI";
 
 import "./CardsGrid.css";
-import { useMemo } from "react";
-import { escapeRegExp } from "../../helpers/validator";
 
 interface CardsGridProps {
   searchText?: string;
@@ -25,6 +25,7 @@ export const CardsGrid = ({ searchText = "" }: CardsGridProps) => {
 
   const filteredPhrases = useMemo(() => {
     if (!regex) return phrases;
+
     return phrases.filter((phrase: PhraseI) => regex.test(phrase.description));
   }, [phrases, regex]);
 

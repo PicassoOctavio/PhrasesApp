@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect, type ChangeEvent } from "react";
+import { useDeferredValue, useEffect } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import {
@@ -31,6 +31,8 @@ export const SearchBar = ({ setSearchTerm }: SearchBarProps) => {
     const idTimer = setTimeout(() => {
       if (deferredValue.length >= 3) {
         setSearchTerm(deferredValue);
+      } else if (deferredValue.length === 0) {
+        setSearchTerm("");
       }
     }, 500);
 

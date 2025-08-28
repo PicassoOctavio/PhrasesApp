@@ -7,7 +7,7 @@ export const useForm = <T extends object>(initialState: T) => {
     target,
   }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = target;
-    const auxvalue = value.replace(/\s+/g, " ").trim();
+    const auxvalue = value.replace(/\s{2,}/g, " ");
 
     setFormState({
       ...formState,
