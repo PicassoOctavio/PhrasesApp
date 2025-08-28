@@ -1,10 +1,20 @@
 .card {
-  width: 300px;
-  height: 100px;
-  background-color: antiquewhite;
-  padding: 30px 20px;
+  position: relative;
+  min-height: 160px;
+  background-color: #e6f6ff;
+  padding: 20px;
   border: 1px solid black;
   border-radius: 10px;
-  position: relative;
-  cursor: grab;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 220px;
+}
+
+.description {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-clamp: 3;
+  overflow: hidden;
 }

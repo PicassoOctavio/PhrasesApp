@@ -70,7 +70,9 @@ export const Card = ({ id, description }: CardProps) => {
           }}
         />
       </IconButton>
-      <Typography variant="h6">{description}</Typography>
+      <Typography variant="h6" className="description">
+        {description}
+      </Typography>
     </motion.div>
   );
 };
