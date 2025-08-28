@@ -6,3 +6,6 @@ export const validatePhrase = (text: string) => {
     return false;
   }
 };
+
+export const escapeRegExp = (s: string) =>
+  s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 
 export const useForm = <T extends object>(initialState: T) => {
   const [formState, setFormState] = useState(initialState);
 
   const onInputChange = ({
     target,
-  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = target;
+    const auxvalue = value.replace(/\s+/g, " ").trim();
+
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: auxvalue,
     });
   };
 

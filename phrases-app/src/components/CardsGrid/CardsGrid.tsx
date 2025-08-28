@@ -4,6 +4,8 @@ import { Card } from "../Card/Card";
 import type { PhraseI } from "../../interfaces/phrasesI";
 
 import "./CardsGrid.css";
+import { useMemo } from "react";
+import { escapeRegExp } from "../../helpers/validator";
 
 interface CardsGridProps {
   searchText?: string;
@@ -12,9 +14,19 @@ interface CardsGridProps {
 export const CardsGrid = ({ searchText = "" }: CardsGridProps) => {
   const { phrases } = useSelector((state) => state.phrases);
 
-  const filteredPhrases = phrases.filter((phrase: PhraseI) =>
-    phrase.description.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const regex = useMemo(() => {
+    if (!searchText) return null;
+    try {
+      return new RegExp(escapeRegExp(searchText), "i");
+    } catch {
+      return null;
+    }
+  }, [searchText]);
+
+  const filteredPhrases = useMemo(() => {
+    if (!regex) return phrases;
+    return phrases.filter((phrase: PhraseI) => regex.test(phrase.description));
+  }, [phrases, regex]);
 
   return (
     <Box className="cards-grid">

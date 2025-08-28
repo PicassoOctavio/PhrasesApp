@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import { useDeferredValue, useEffect, type ChangeEvent } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import {
@@ -25,18 +25,24 @@ export const SearchBar = ({ setSearchTerm }: SearchBarProps) => {
   const { search, onInputChange } = useForm(formField);
   const theme = useTheme();
 
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value.trim();
-    onInputChange(event);
-    setSearchTerm(value);
-  };
+  const deferredValue = useDeferredValue(search);
+
+  useEffect(() => {
+    const idTimer = setTimeout(() => {
+      if (deferredValue.length >= 3) {
+        setSearchTerm(deferredValue);
+      }
+    }, 500);
+
+    return () => clearTimeout(idTimer);
+  }, [deferredValue, setSearchTerm]);
 
   return (
     <Container className="searchbar-content">
       <TextField
         name="search"
         value={search}
-        onChange={handleSearch}
+        onChange={onInputChange}
         variant="outlined"
         type="text"
         label="Buscar"
