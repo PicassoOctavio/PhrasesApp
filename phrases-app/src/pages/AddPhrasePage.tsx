@@ -30,14 +30,14 @@ export const AddPhrasePage = () => {
       return;
     }
 
-    setError(false);
-
     dispatch(
       addNewPhrase({
         id: crypto.randomUUID(),
         description: phrase,
       })
     );
+
+    setError(false);
     navigate("/");
   };
 
@@ -103,6 +103,7 @@ export const AddPhrasePage = () => {
         >
           <TextField
             name="phrase"
+            aria-label="add-input"
             value={phrase}
             onChange={onInputChange}
             fullWidth
@@ -112,7 +113,7 @@ export const AddPhrasePage = () => {
             error={error}
             helperText={
               error
-                ? "La frase no puede superar los 200 caracteres y no puede estar vacía"
+                ? "La frase debe tener más de 5 caracteres y menos de 200 caracteres."
                 : ""
             }
           />
