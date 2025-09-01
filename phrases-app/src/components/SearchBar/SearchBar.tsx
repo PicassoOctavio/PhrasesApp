@@ -28,13 +28,14 @@ export const SearchBar = ({ setSearchTerm }: SearchBarProps) => {
   const deferredValue = useDeferredValue(search);
 
   useEffect(() => {
+    const cleanValue = deferredValue.trim().replace(/\s{2,}/g, " ");
     const idTimer = setTimeout(() => {
-      if (deferredValue.length >= 3) {
-        setSearchTerm(deferredValue);
-      } else if (deferredValue.length === 0) {
+      if (cleanValue.length >= 3) {
+        setSearchTerm(cleanValue);
+      } else if (cleanValue.length === 0) {
         setSearchTerm("");
       }
-    }, 500);
+    }, 400);
 
     return () => clearTimeout(idTimer);
   }, [deferredValue, setSearchTerm]);
@@ -43,6 +44,7 @@ export const SearchBar = ({ setSearchTerm }: SearchBarProps) => {
     <Container className="searchbar-content">
       <TextField
         name="search"
+        aria-label="search-input"
         value={search}
         onChange={onInputChange}
         variant="outlined"
