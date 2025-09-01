@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Typography, useTheme } from "@mui/material";
 import { Close } from "@mui/icons-material";
@@ -5,13 +6,14 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { deletePhrase } from "../../store/phrasesSlice";
 
 import "./Card.css";
+import Swal from "sweetalert2";
 
 interface CardProps {
   id: string;
   description: string;
 }
 
-export const Card = ({ id, description }: CardProps) => {
+export const Card = memo(({ id, description }: CardProps) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-100, 100], [60, -60]);
@@ -20,8 +22,41 @@ export const Card = ({ id, description }: CardProps) => {
 
   const dispatch = useDispatch();
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
+
   const handleDelete = () => {
-    dispatch(deletePhrase(id));
+    swalWithBootstrapButtons
+      .fire({
+        title: "Estas seguro?",
+        text: "Estas a punto de eliminar",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, eliminar",
+        cancelButtonText: "No, cancelar",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          dispatch(deletePhrase(id));
+          swalWithBootstrapButtons.fire({
+            title: "Eliminado",
+            text: "La tarjeta fue eliminada.",
+            icon: "success",
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: "Tu frase aún existe",
+            icon: "error",
+          });
+        }
+      });
   };
 
   return (
@@ -75,4 +110,4 @@ export const Card = ({ id, description }: CardProps) => {
       </Typography>
     </motion.div>
   );
-};
+});

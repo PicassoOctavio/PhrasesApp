@@ -17,4 +17,19 @@
   overflow-wrap: anywhere;
   line-clamp: 3;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 0px 10px;
+  border: 0px;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #83c6ff;
 }
