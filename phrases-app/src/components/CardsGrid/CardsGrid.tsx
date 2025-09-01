@@ -6,13 +6,14 @@ import { escapeRegExp } from "../../helpers/validator";
 import type { PhraseI } from "../../interfaces/phrasesI";
 
 import "./CardsGrid.css";
+import type { RootState } from "@reduxjs/toolkit/query";
 
 interface CardsGridProps {
   searchText?: string;
 }
 
 export const CardsGrid = ({ searchText = "" }: CardsGridProps) => {
-  const { phrases } = useSelector((state) => state.phrases);
+  const { phrases } = useSelector((state: RootState) => state.phrases);
 
   const regex = useMemo(() => {
     if (!searchText) return null;
@@ -31,21 +32,9 @@ export const CardsGrid = ({ searchText = "" }: CardsGridProps) => {
 
   return (
     <Box className="cards-grid">
-      {searchText
-        ? filteredPhrases.map((phrase: PhraseI) => (
-            <Card
-              key={phrase.id}
-              id={phrase.id}
-              description={phrase.description}
-            />
-          ))
-        : phrases.map((phrase: PhraseI) => (
-            <Card
-              key={phrase.id}
-              id={phrase.id}
-              description={phrase.description}
-            />
-          ))}
+      {(regex ? filteredPhrases : phrases).map((phrase: PhraseI) => (
+        <Card key={phrase.id} id={phrase.id} description={phrase.description} />
+      ))}
     </Box>
   );
 };
